@@ -1,0 +1,26 @@
+# Local development infrastructure.
+# The web/api/agent apps run via `pnpm dev`; this file provides the backing
+# services they (will) talk to. Today that's MariaDB for per-server game
+# databases. Platform data lives in Supabase, not here.
+#
+#   docker compose -f infra/docker-compose.yml up -d
+#
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: alexion-mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${GAME_DB_ROOT_PASSWORD:-change-me}
+    ports:
+      - '${GAME_DB_PORT:-3306}:3306'
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mariadb_data:

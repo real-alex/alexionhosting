@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+
+# Turborepo
+.turbo/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Runtime data for local game servers (never commit game data)
+data/
+volumes/
+backups/
+*.db
+
+# Game server binaries / proprietary files (provided by operator, never committed).
+# The server-files/ folders and their READMEs/configs ARE tracked; only the
+# proprietary binaries dropped into them are ignored.
+templates/**/server-files/samp03svr
+templates/**/server-files/crmp-server
+templates/**/server-files/*.so
+templates/**/server-files/plugins/*.so
+templates/**/server-files/**/*.amx
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+
+# Test coverage
+coverage/
